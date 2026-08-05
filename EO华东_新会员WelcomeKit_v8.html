@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>欢迎加入 EO 华东 · 致新会员</title>
+<style>
+  :root{
+    --ink:#1B2A3A;--ink-soft:#3E5266;--mist:#7C8A99;
+    --paper:#F7F4EF;--paper-2:#FFFFFF;
+    --clay:#C56B4A;--clay-soft:#E8D4C8;--teal:#2E7D6B;
+    --line:#E2DAD0;--gold:#C9A24B;
+    --eo-blue:#3B4CC0;--eo-pink:#E24B72;--eo-yellow:#E8B84B;--eo-orange:#E8622E;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:"Microsoft YaHei","PingFang SC",-apple-system,sans-serif;
+    background:var(--paper);color:var(--ink);line-height:1.85;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  .wrap{max-width:660px;margin:0 auto;position:relative}
+  .spine{position:absolute;left:32px;top:0;bottom:0;width:1px;
+    background:linear-gradient(to bottom,transparent,var(--clay-soft) 5%,var(--clay-soft) 95%,transparent);z-index:0}
+  @media(max-width:560px){.spine{left:22px}}
+  section{position:relative;z-index:1;padding:0 32px 0 72px}
+  @media(max-width:560px){section{padding:0 22px 0 54px}}
+  .dot{position:absolute;left:26px;width:13px;height:13px;border-radius:50%;
+    background:var(--paper);border:2px solid var(--clay);z-index:2}
+  @media(max-width:560px){.dot{left:16px}}
+  .dot.solid{background:var(--clay)}
+  .dot.teal{border-color:var(--teal)}.dot.teal.solid{background:var(--teal)}
+  .dot.blue{border-color:var(--eo-blue)}.dot.blue.solid{background:var(--eo-blue)}
+
+  /* 封面 */
+  .hero{padding-top:72px;padding-bottom:20px}
+  .eyebrow{font-size:12.5px;letter-spacing:3px;color:var(--clay);font-weight:600;text-transform:uppercase;margin-bottom:22px}
+  .hero h1{font-size:33px;line-height:1.4;font-weight:700;letter-spacing:.5px;color:var(--ink)}
+  .hero h1 .em{color:var(--clay)}
+  .hero .sub{margin-top:18px;font-size:16px;color:var(--ink-soft)}
+  .theme-tag{display:inline-block;margin-top:26px;font-size:13px;color:var(--teal);
+    border:1px solid var(--teal);border-radius:20px;padding:5px 16px;letter-spacing:1px}
+
+  /* 会长信 */
+  .letter{padding-top:54px;padding-bottom:20px}
+  .kicker{font-size:12.5px;letter-spacing:2px;color:var(--mist);font-weight:600;margin-bottom:16px}
+  .letter-body{background:var(--paper-2);border:1px solid var(--line);border-radius:16px;padding:30px 28px;position:relative}
+  .letter-body::before{content:"“";position:absolute;top:2px;left:18px;font-size:64px;color:var(--clay-soft);font-family:Georgia,serif;line-height:1}
+  .letter-body p{font-size:15.5px;color:var(--ink-soft);margin-bottom:15px;position:relative}
+  .letter-body p:first-of-type{margin-top:14px}
+  .letter-body p:last-of-type{margin-bottom:0}
+  .signoff{margin-top:24px;padding-top:20px;border-top:1px solid var(--line);display:flex;align-items:center;gap:14px}
+  .sig-avatar{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#8B6BB1,#5E4B8B);
+    flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:19px;font-weight:700}
+  .signoff .name{font-size:17px;font-weight:700;color:var(--ink)}
+  .signoff .role{font-size:13px;color:var(--mist);margin-top:2px}
+
+  /* 通用标题 */
+  .sec-head{padding-top:56px;padding-bottom:8px}
+  .sec-head .n{font-size:12.5px;letter-spacing:2px;color:var(--clay);font-weight:600;margin-bottom:8px}
+  .sec-head .n.teal{color:var(--teal)}.sec-head .n.blue{color:var(--eo-blue)}
+  .sec-head h2{font-size:24px;font-weight:700;color:var(--ink);line-height:1.4}
+  .sec-head .lead{margin-top:12px;font-size:15px;color:var(--ink-soft)}
+
+  /* 主题横幅 */
+  .theme-banner{padding-top:28px;padding-bottom:10px}
+  .theme-card{background:linear-gradient(135deg,#1B2A3A,#2A2145);border-radius:18px;padding:34px 30px;text-align:center;position:relative;overflow:hidden}
+  .theme-card .ring{position:absolute;right:-40px;top:-40px;width:160px;height:160px;border-radius:50%;
+    border:14px solid rgba(226,75,114,.18);border-right-color:rgba(232,184,75,.25);border-bottom-color:rgba(46,125,107,.22)}
+  .theme-card .en{font-size:13px;letter-spacing:4px;color:var(--gold);font-weight:600;position:relative}
+  .theme-card .cn{font-size:28px;font-weight:700;color:#fff;margin:12px 0;position:relative}
+  .theme-card .desc{font-size:14.5px;color:#C9CED8;position:relative;max-width:460px;margin:0 auto}
+
+  /* EO一分钟 */
+  .eo-intro{padding-top:28px;padding-bottom:10px}
+  .eo-intro p{font-size:15px;color:var(--ink-soft);margin-bottom:20px}
+  .stats{display:flex;gap:12px}
+  .stat{flex:1;background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:18px 12px;text-align:center}
+  .stat .num{font-size:26px;font-weight:800;color:var(--clay);font-family:Georgia,serif;line-height:1}
+  .stat .lbl{font-size:12.5px;color:var(--mist);margin-top:8px}
+  .values{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px}
+  .val{font-size:13px;color:var(--ink);background:var(--clay-soft);border-radius:16px;padding:5px 14px}
+
+  /* 华东画像 */
+  .chapter{padding-top:28px;padding-bottom:10px}
+  .ch-stats{display:flex;gap:12px;margin-bottom:16px}
+  .ch-stat{flex:1;background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:16px 10px;text-align:center}
+  .ch-stat .num{font-size:23px;font-weight:800;color:var(--teal);font-family:Georgia,serif;line-height:1}
+  .ch-stat .lbl{font-size:12px;color:var(--mist);margin-top:7px}
+  .ch-note{font-size:14px;color:var(--ink-soft);background:var(--paper-2);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:0 12px 12px 0;padding:14px 18px}
+
+  /* 年度活动日历 */
+  .calendar{padding-top:24px;padding-bottom:10px}
+  .cal-legend{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+  .cal-leg{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink-soft)}
+  .cal-leg .dotc{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+  .month{display:flex;gap:14px;background:var(--paper-2);border:1px solid var(--line);
+    border-radius:14px;padding:16px 18px;margin-bottom:11px}
+  .month .mtag{flex-shrink:0;width:44px;height:44px;border-radius:12px;background:var(--ink);
+    display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;font-weight:700}
+  .month .mbody{flex:1;min-width:0}
+  .month .mhl{font-size:14px;color:var(--ink);line-height:1.6;margin-bottom:7px}
+  .month .mtags{display:flex;flex-wrap:wrap;gap:6px}
+  .month .mt{font-size:11px;color:#fff;border-radius:10px;padding:2px 9px;font-weight:500}
+
+  /* EO 名词解释 */
+  .glossary{padding-top:24px;padding-bottom:10px}
+  .gloss-item{display:flex;gap:14px;align-items:baseline;background:var(--paper-2);
+    border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px}
+  .gloss-item .abbr{flex-shrink:0;font-size:16px;font-weight:800;color:var(--eo-blue);
+    font-family:Georgia,serif;width:52px}
+  .gloss-item .gtxt{flex:1}
+  .gloss-item .gcn{font-size:15px;font-weight:600;color:var(--ink)}
+  .gloss-item .gen{font-size:12.5px;color:var(--mist);margin-top:1px}
+
+  /* MyEO 介绍 */
+  .myeo{padding-top:24px;padding-bottom:10px}
+  .myeo-card{background:linear-gradient(135deg,#E8622E,#C94A1E);border-radius:18px;padding:28px 26px;color:#fff;position:relative;overflow:hidden;margin-bottom:16px}
+  .myeo-card .ring{position:absolute;right:-30px;bottom:-30px;width:130px;height:130px;border-radius:50%;border:12px solid rgba(255,255,255,.12)}
+  .myeo-card .tag{font-size:12px;letter-spacing:3px;color:#FFE0D0;font-weight:600;position:relative}
+  .myeo-card h3{font-size:22px;font-weight:700;margin:10px 0 8px;position:relative}
+  .myeo-card p{font-size:14.5px;color:#FFEAE0;position:relative;line-height:1.7}
+  .myeo-tags{display:flex;flex-wrap:wrap;gap:9px}
+  .myeo-tag{font-size:13px;color:var(--eo-orange);background:#FCE8DF;border-radius:16px;padding:6px 15px;font-weight:500}
+
+  /* 董事会 */
+  .board{padding-top:24px;padding-bottom:10px}
+  .board-president{display:flex;align-items:center;gap:16px;background:var(--paper-2);
+    border:1.5px solid var(--clay-soft);border-radius:16px;padding:18px 20px;margin-bottom:18px}
+  .bp-avatar{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#8B6BB1,#5E4B8B);
+    flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;font-weight:700}
+  .bp-txt .role{font-size:12px;letter-spacing:2px;color:var(--clay);font-weight:600;margin-bottom:2px}
+  .bp-txt h4{font-size:18px;font-weight:700;color:var(--ink)}
+  .bp-txt .en{font-size:13px;color:var(--mist)}
+  .bgroup{margin-bottom:16px;background:var(--paper-2);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .bgroup-head{padding:11px 18px;color:#fff;font-size:14px;font-weight:600;letter-spacing:1px}
+  .bgroup-body{padding:6px 18px 12px}
+  .bmember{display:flex;justify-content:space-between;align-items:baseline;padding:8px 0;border-bottom:1px solid var(--line)}
+  .bmember:last-child{border-bottom:none}
+  .bmember .who{font-size:15px;font-weight:600;color:var(--ink)}
+  .bmember .who .en{font-size:12.5px;color:var(--mist);font-weight:400;margin-left:6px}
+  .bmember .pos{font-size:12.5px;color:var(--ink-soft);text-align:right;flex-shrink:0;margin-left:12px}
+  .bmember.you{background:var(--clay-soft);margin:4px -18px;padding:8px 18px;border-radius:8px;border-bottom:none}
+  .bmember.you .who{color:var(--clay)}
+
+  /* 1-2-3 旅程 */
+  .journey{padding-top:28px;padding-bottom:10px}
+  .step{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:22px 22px 20px;margin-bottom:16px;position:relative;overflow:hidden}
+  .step::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--clay)}
+  .step .big{font-size:34px;font-weight:800;color:var(--clay);line-height:1;float:left;margin-right:16px;margin-top:2px;font-family:Georgia,serif}
+  .step h3{font-size:17px;font-weight:700;color:var(--ink);margin-bottom:6px}
+  .step .when{display:inline-block;font-size:12px;color:var(--teal);background:#E7F1EE;border-radius:12px;padding:2px 10px;margin-bottom:8px}
+  .step p{font-size:14.5px;color:var(--ink-soft);overflow:hidden}
+
+  /* 你会遇到的人 */
+  .people{padding-top:28px;padding-bottom:10px}
+  .person{display:flex;gap:16px;align-items:flex-start;background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:13px}
+  .badge{flex-shrink:0;width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:700;color:#fff}
+  .badge.a{background:var(--clay)}.badge.b{background:var(--teal)}.badge.c{background:var(--ink)}
+  .person .txt h4{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:3px}
+  .person .txt p{font-size:14px;color:var(--ink-soft)}
+
+  /* 三件小事 */
+  .todo{padding-top:28px;padding-bottom:10px}
+  .todo-item{display:flex;gap:14px;align-items:flex-start;margin-bottom:18px}
+  .check{flex-shrink:0;width:26px;height:26px;border-radius:50%;border:2px solid var(--clay);display:flex;align-items:center;justify-content:center;color:var(--clay);font-size:14px;font-weight:700;margin-top:2px}
+  .todo-item .txt strong{display:block;font-size:15.5px;color:var(--ink);margin-bottom:2px}
+  .todo-item .txt span{font-size:14px;color:var(--ink-soft)}
+
+  /* 名录入口 */
+  .directory{padding-top:28px;padding-bottom:10px}
+  .dir-card{display:block;text-decoration:none;background:linear-gradient(135deg,#2E7D6B,#1E5A4C);
+    border-radius:16px;padding:26px 28px;color:#fff;position:relative;overflow:hidden;transition:transform .2s}
+  .dir-card:hover{transform:translateY(-2px)}
+  .dir-card .lbl{font-size:12.5px;letter-spacing:2px;color:#A8DCC9;font-weight:600;margin-bottom:8px}
+  .dir-card h4{font-size:20px;font-weight:700;margin-bottom:6px}
+  .dir-card p{font-size:14px;color:#CDE8DF}
+  .dir-card .arrow{position:absolute;right:24px;top:50%;transform:translateY(-50%);font-size:24px;color:#A8DCC9}
+
+  /* 结尾 */
+  .closing{padding-top:56px;padding-bottom:80px;text-align:center}
+  .closing .line{width:40px;height:2px;background:var(--clay);margin:0 auto 24px}
+  .closing p{font-size:17px;color:var(--ink);font-weight:500;line-height:1.7}
+  .closing .en{font-size:13px;letter-spacing:2px;color:var(--clay);margin-top:14px;font-weight:600}
+  .closing .small{font-size:13px;color:var(--mist);margin-top:26px;letter-spacing:1px}
+
+  @media(prefers-reduced-motion:no-preference){
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.in{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="spine"></div>
+
+  <!-- 封面 -->
+  <section class="hero">
+    <span class="dot solid" style="top:80px"></span>
+    <div class="eyebrow reveal">Entrepreneurs' Organization · 华东</div>
+    <h1 class="reveal">欢迎你，<br>成为 <span class="em">EO 华东</span> 的一员。</h1>
+    <p class="sub reveal">从今天起，你不再是一个人在往前走。<br>这里有一群同样在创业路上、愿意与你并肩的人。</p>
+    <span class="theme-tag reveal">FY26/27 · 连接世界 Connecting the World</span>
+  </section>
+
+  <!-- 会长的信 -->
+  <section class="letter">
+    <span class="dot" style="top:78px"></span>
+    <div class="kicker reveal">一封写给你的信</div>
+    <div class="letter-body reveal">
+      <p>很高兴你来了。</p>
+      <p>加入 EO，不只是多了一张会员卡。它意味着，在你独自扛下公司、扛下压力的那些时刻，从此有一群懂你的人在身边——他们不会评判你，只会真诚地听你、陪你、和你一起成长。</p>
+      <p>今年，我们华东分会的主题是「连接世界 · Connecting the World」。我们相信，一个企业家能走多远，很大程度上取决于他身边连接着怎样的人。所以这一年，我们想为你连接的，不只是华东这 100 多位伙伴，还有 EO 遍布全球 60 多个国家、两万多名企业家的网络。</p>
+      <p>接下来的三个月，我们会有人主动来找你，带你认识这个大家庭。你不用担心"我该做什么、该找谁"——这些，我们都替你安排好了。你只需要带着真实的自己来。</p>
+      <p>期待在未来的日子里，让我们听见你的故事。</p>
+      <div class="signoff">
+        <div class="sig-avatar">P</div>
+        <div>
+          <div class="name">勾曼绫 Penny Kou</div>
+          <div class="role">EO 华东分会 · 会长 President · FY26/27</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 今年主题 -->
+  <section class="sec-head">
+    <span class="dot solid" style="top:80px"></span>
+    <div class="n reveal">我们今年的主题</div>
+    <h2 class="reveal">连接，是这一年的关键词</h2>
+  </section>
+  <section class="theme-banner">
+    <div class="theme-card reveal">
+      <div class="ring"></div>
+      <div class="en">CONNECTING THE WORLD</div>
+      <div class="cn">连接世界 · 启迪未来</div>
+      <div class="desc">连接同侪、连接全球、连接你事业与人生的下一种可能。你的加入，本身就是这场连接的一部分。</div>
+    </div>
+  </section>
+
+  <!-- EO 一分钟 -->
+  <section class="sec-head">
+    <span class="dot solid" style="top:80px"></span>
+    <div class="n reveal">一分钟读懂 EO</div>
+    <h2 class="reveal">你加入的是一个怎样的组织</h2>
+  </section>
+  <section class="eo-intro">
+    <p class="reveal">EO 企业家协会成立于 1987 年，是一个由志同道合的企业家组成的全球高质量同侪网络。通过同侪学习、深度体验与专家互动，帮助企业家获得更成功的事业成就，并实现自我价值。</p>
+    <div class="stats reveal">
+      <div class="stat"><div class="num">60+</div><div class="lbl">覆盖国家</div></div>
+      <div class="stat"><div class="num">235</div><div class="lbl">全球分会</div></div>
+      <div class="stat"><div class="num">2万+</div><div class="lbl">全球会员</div></div>
+    </div>
+    <div class="values reveal">
+      <span class="val">信任与尊重</span>
+      <span class="val">敢想敢做</span>
+      <span class="val">渴望学习</span>
+      <span class="val">共同成长</span>
+    </div>
+  </section>
+
+  <!-- 华东画像 -->
+  <section class="sec-head">
+    <span class="dot teal solid" style="top:80px"></span>
+    <div class="n teal reveal">认识你的分会</div>
+    <h2 class="reveal">华东，是一群怎样的人</h2>
+  </section>
+  <section class="chapter">
+    <div class="ch-stats reveal">
+      <div class="ch-stat"><div class="num">100+</div><div class="lbl">华东会员</div></div>
+      <div class="ch-stat"><div class="num">16</div><div class="lbl">Forum 小组</div></div>
+      <div class="ch-stat"><div class="num">44</div><div class="lbl">平均年龄</div></div>
+    </div>
+    <div class="ch-note reveal">这里有广告出版、进出口贸易、食品饮料、科技制造、传媒消费等各行各业的创始人。行业不同，但都在认真地做一件长久的事——这，就是你未来最可能交心的一群人。</div>
+  </section>
+
+  <!-- 年度活动日历 -->
+  <section class="sec-head">
+    <span class="dot solid" style="top:80px"></span>
+    <div class="n reveal">这一年有什么好玩的</div>
+    <h2 class="reveal">2026—2027 活动抢先看</h2>
+    <p class="lead reveal">从西藏转山到迪拜研习，从春酒到圣诞派对。一年下来，总有几场是为你准备的。</p>
+  </section>
+  <section class="calendar">
+    <div class="cal-legend reveal" id="cal-legend"></div>
+    <div id="cal-months"></div>
+  </section>
+
+  <!-- EO 名词解释 -->
+  <section class="sec-head">
+    <span class="dot blue solid" style="top:80px"></span>
+    <div class="n blue reveal">看懂这些缩写</div>
+    <h2 class="reveal">EO 常用名词小词典</h2>
+    <p class="lead reveal">上面日历里那些英文缩写，其实各有来头。收藏这一段，以后就不懵了。</p>
+  </section>
+  <section class="glossary" id="glossary"></section>
+
+  <!-- MyEO 介绍 -->
+  <section class="sec-head">
+    <span class="dot solid" style="top:80px"></span>
+    <div class="n reveal">不只是学习和生意</div>
+    <h2 class="reveal">MyEO：把热爱变成同伴</h2>
+    <p class="lead reveal">EO 不止于 Forum 和学习。MyEO 是会员们因为共同热爱而聚在一起的地方。</p>
+  </section>
+  <section class="myeo">
+    <div class="myeo-card reveal">
+      <div class="ring"></div>
+      <div class="tag">MY EO</div>
+      <h3>把热爱带进社群，把伙伴带进人生</h3>
+      <p>喜欢打高尔夫、爱滑雪、想读书、好美食……只要你有热爱，就能找到同好，甚至发起一个属于你的小圈子。很多深厚的友谊，正是从一次滑雪、一场球局开始的。</p>
+    </div>
+  </section>
+
+  <!-- 董事会 -->
+  <section class="sec-head">
+    <span class="dot blue solid" style="top:80px"></span>
+    <div class="n blue reveal">认识你的董事会</div>
+    <h2 class="reveal">这一年，为你服务的人</h2>
+    <p class="lead reveal">分会由一群志愿投入的会员共同运营。他们各管一块，但目标只有一个——让你在这里过得好。</p>
+  </section>
+  <section class="board">
+    <div class="board-president reveal">
+      <div class="bp-avatar">P</div>
+      <div class="bp-txt">
+        <div class="role">PRESIDENT · 会长</div>
+        <h4>勾曼绫 <span class="en" style="font-weight:400">Penny Kou</span></h4>
+      </div>
+    </div>
+    <div id="board-groups"></div>
+  </section>
+
+  <!-- 旅程 -->
+  <section class="sec-head">
+    <span class="dot solid" style="top:80px"></span>
+    <div class="n reveal">你接下来会经历什么</div>
+    <h2 class="reveal">前 90 天，一条为你铺好的路</h2>
+    <p class="lead reveal">四步，从陌生到归属。每一步，都有人陪你走。</p>
+  </section>
+  <section class="journey">
+    <div class="step reveal">
+      <span class="big">1</span><span class="when">第 1 周</span>
+      <h3>融合委员会主动找到你</h3>
+      <p>入会第一周，融合委员会会有人主动加你、约你喝杯咖啡轻松认识，聊聊你为什么来。他们是你在 EO 的第一群"自己人"——这三个月，有任何事都可以找他们。</p>
+    </div>
+    <div class="step reveal">
+      <span class="big">2</span><span class="when">进组前</span>
+      <h3>参加新会员 Forum 培训</h3>
+      <p>正式进小组前，你会和几位同期新人一起参加一次 Forum 培训，了解 Forum 是怎么运作的、大家在里面如何真诚分享。</p>
+    </div>
+    <div class="step reveal">
+      <span class="big">3</span><span class="when">培训完成后</span>
+      <h3>编入属于你的小组</h3>
+      <p>培训一结束，我们就把你编进最合适的 Forum 小组。在这里，你会分享你的反思真实故事——那一刻，你会从"新来的"变成"我们的人"。</p>
+    </div>
+    <div class="step reveal">
+      <span class="big">4</span><span class="when">第 90 天</span>
+      <h3>真正融入这个家</h3>
+      <p>参加第一次分会活动、认识一群志同道合的朋友。三个月后回头看，你已经在这里有了归属。</p>
+    </div>
+  </section>
+
+  <!-- 你会遇到的人 -->
+  <section class="sec-head">
+    <span class="dot teal solid" style="top:80px"></span>
+    <div class="n teal reveal">你会遇到这些人</div>
+    <h2 class="reveal">有事，你永远知道该找谁</h2>
+  </section>
+  <section class="people">
+    <div class="person reveal">
+      <div class="badge a">融</div>
+      <div class="txt"><h4>融合委员会</h4><p>陪你走过前 90 天的人。日常任何疑问、想认识谁、想参加什么，找他们就对了。</p></div>
+    </div>
+    <div class="person reveal">
+      <div class="badge b">F</div>
+      <div class="txt"><h4>Forum 委员</h4><p>负责把你编进最合适的小组。关于 Forum 怎么运作、你适合哪一组，他最清楚。</p></div>
+    </div>
+    <div class="person reveal">
+      <div class="badge c">学</div>
+      <div class="txt"><h4>学习委员</h4><p>为你安排各类学习活动和分享嘉宾的人。想在 EO 学到东西、突破认知，跟着他的节奏走就对了。</p></div>
+    </div>
+  </section>
+
+  <!-- 三件小事 -->
+  <section class="sec-head">
+    <span class="dot solid" style="top:80px"></span>
+    <div class="n reveal">趁现在，做三件小事</div>
+    <h2 class="reveal">主动一点点，融入快很多</h2>
+  </section>
+  <section class="todo">
+    <div class="todo-item reveal">
+      <div class="check">1</div>
+      <div class="txt"><strong>存下融合委员会的联系方式</strong><span>他们加你之后，回一句话打个招呼。第一步，往往就这么简单。</span></div>
+    </div>
+    <div class="todo-item reveal">
+      <div class="check">2</div>
+      <div class="txt"><strong>想想你想从 EO 得到什么</strong><span>是生意上的启发、还是想找几个能说真心话的朋友？想清楚，收获会更大。</span></div>
+    </div>
+    <div class="todo-item reveal">
+      <div class="check">3</div>
+      <div class="txt"><strong>留一个属于你的故事</strong><span>生命故事分享时，别急着讲成绩。讲讲你走过的路——那才是最打动人的部分。</span></div>
+    </div>
+  </section>
+
+  <!-- 名录入口 -->
+  <section class="sec-head">
+    <span class="dot teal solid" style="top:80px"></span>
+    <div class="n teal reveal">认识所有伙伴</div>
+    <h2 class="reveal">这里，是华东的每一个人</h2>
+  </section>
+  <section class="directory">
+    <a class="dir-card reveal" href="#" id="dir-link">
+      <div class="lbl">MEMBER DIRECTORY</div>
+      <h4>华东会员名录</h4>
+      <p>翻一翻，也许下一个想认识的人，就在里面。</p>
+      <span class="arrow">›</span>
+    </a>
+  </section>
+
+  <!-- 结尾 -->
+  <section class="closing">
+    <span class="dot teal solid" style="top:80px"></span>
+    <div class="line reveal"></div>
+    <p class="reveal">共同成长，是我们在一起的意义。<br>欢迎你，成为其中一员。</p>
+    <div class="en reveal">TOGETHER WE GROW</div>
+    <div class="small reveal">EO 华东 · 会员体验 · 连接世界</div>
+  </section>
+</div>
+
+<script>
+  const cal={
+    "cats":[
+      {"name":"学习活动","color":"#E24B72"},
+      {"name":"国际活动","color":"#3B4CC0"},
+      {"name":"培训","color":"#2E7D6B"},
+      {"name":"分会活动","color":"#C9A24B"},
+      {"name":"兴趣活动 MyEO","color":"#E8622E"}
+    ],
+    "months":[
+      {"m":"7月","hl":"冈仁波齐与平行世界","tags":["分会活动"]},
+      {"m":"8月","hl":"西藏冈仁波齐转山 · 蒙古乌兰巴托 · EO华东家庭日","tags":["兴趣活动 MyEO","分会活动"]},
+      {"m":"9月","hl":"印尼亚洲高尔夫+研习 · 韩国济州区域领导峰会 · 内蒙GCB研习","tags":["国际活动"]},
+      {"m":"10月","hl":"营销出海私享会 · 黄山ABF研习 · 武当山区域领导力学院","tags":["学习活动","国际活动"]},
+      {"m":"11月","hl":"驭风破局·竞速未来 · 香港探索北亚 · 西岸艺博艺术分享","tags":["学习活动","国际活动"]},
+      {"m":"12月","hl":"华东/深圳 Christmas Party · EO Korea & Taipei 三十周年","tags":["国际活动","分会活动"]},
+      {"m":"1月","hl":"迪拜ABF研习 · 北京百家宴 · 双赢谈判之竞合之道","tags":["国际活动","学习活动"]},
+      {"m":"2月","hl":"春酒 · 韩国滑雪 · 印尼巴厘岛会长会议","tags":["兴趣活动 MyEO","国际活动"]},
+      {"m":"3月","hl":"团队协作的五大障碍 · 福建GCB研习","tags":["学习活动"]},
+      {"m":"4月","hl":"上海企业家节&EOA大会 · 日本京都全球领导力会议GLC","tags":["国际活动","分会活动"]},
+      {"m":"5月","hl":"Chapter Retreat · 普吉岛ABF研习 · 杭州主持人峰会","tags":["分会活动","国际活动"]},
+      {"m":"6月","hl":"华东/北京/大连交接会 · 海南Retreat & Handover","tags":["分会活动"]}
+    ]
+  };
+  const catColor={};cal.cats.forEach(c=>catColor[c.name]=c.color);
+  const legHost=document.getElementById('cal-legend');
+  cal.cats.forEach(c=>{
+    const el=document.createElement('span');el.className='cal-leg';
+    el.innerHTML=`<span class="dotc" style="background:${c.color}"></span>${c.name}`;
+    legHost.appendChild(el);
+  });
+  const mHost=document.getElementById('cal-months');
+  cal.months.forEach(mo=>{
+    const tags=mo.tags.map(t=>`<span class="mt" style="background:${catColor[t]||'#7C8A99'}">${t}</span>`).join('');
+    const el=document.createElement('div');el.className='month reveal';
+    el.innerHTML=`<div class="mtag">${mo.m}</div><div class="mbody"><div class="mhl">${mo.hl}</div><div class="mtags">${tags}</div></div>`;
+    mHost.appendChild(el);
+  });
+
+  const glossary=[
+    {"abbr":"GLA","en":"Global Leadership Academy","cn":"全球领导力学院"},
+    {"abbr":"GLC","en":"Global Leadership Conference","cn":"全球领导力峰会"},
+    {"abbr":"RLA","en":"Regional Leadership Academy","cn":"区域领导力学院"},
+    {"abbr":"DNA","en":"Discovery North Asia","cn":"探索北亚"},
+    {"abbr":"ABF","en":"Asia Bridge Forum","cn":"亚洲桥梁小组"},
+    {"abbr":"GCB","en":"Greater China Bridge","cn":"大中华桥梁分会"}
+  ];
+  const gHost=document.getElementById('glossary');
+  glossary.forEach(g=>{
+    const el=document.createElement('div');el.className='gloss-item reveal';
+    el.innerHTML=`<span class="abbr">${g.abbr}</span><div class="gtxt"><div class="gcn">${g.cn}</div><div class="gen">${g.en}</div></div>`;
+    gHost.appendChild(el);
+  });
+
+  const board={"groups":[
+    {"name":"分会治理","color":"#3B4CC0","members":[
+      {"cn":"仇懿杰","en":"Cho","role":"治理 Governance"},
+      {"cn":"冯晨光","en":"Justin Feng","role":"财务委员 Finance"},
+      {"cn":"黄雪","en":"Michelle Huang","role":"分会经理 Chapter Mgr"}]},
+    {"name":"品牌与兴趣","color":"#C9A24B","members":[
+      {"cn":"张昕琳","en":"Celine Zhang","role":"传讯委员 Marcom"},
+      {"cn":"周阳","en":"Linda Zhou","role":"兴趣委员 MyEO"},
+      {"cn":"何涛涛","en":"Taotao He","role":"兴趣副委员 MyEO Co"}]},
+    {"name":"会员与体验","color":"#E8622E","members":[
+      {"cn":"刘巍","en":"Wei Liu","role":"会籍委员 Membership"},
+      {"cn":"何辉","en":"Sunny He","role":"会籍副委员 Membership Co"},
+      {"cn":"李雪","en":"Snow Lee","role":"会籍副委员 Membership Co"},
+      {"cn":"秦广熠","en":"Cici Qin","role":"融合委员 Engagement"},
+      {"cn":"凃弘炜","en":"Welson Tu","role":"融合副委员 Engagement Co"}]},
+    {"name":"Forum 小组","color":"#E24B72","members":[
+      {"cn":"徐磊","en":"Austin Xu","role":"小组委员 Forum"},
+      {"cn":"周阳","en":"Linda Zhou","role":"小组副委员 Forum Co"},
+      {"cn":"朱琳云","en":"Leia Zhu","role":"小组副委员 Forum Co"}]},
+    {"name":"学习与活动","color":"#2E7D6B","members":[
+      {"cn":"朱彤云","en":"Vera Chu","role":"学习委员 Learning"},
+      {"cn":"张志兵","en":"Ellen Zhang","role":"学习副委员 Learning Co"},
+      {"cn":"孟祥月","en":"Fiona Meng","role":"学院委员 EOA"}]}
+  ]};
+  const host=document.getElementById('board-groups');
+  board.groups.forEach(g=>{
+    const rows=g.members.map(m=>
+      `<div class="bmember${m.you?' you':''}"><span class="who">${m.cn}<span class="en">${m.en}</span></span><span class="pos">${m.role}</span></div>`
+    ).join('');
+    const el=document.createElement('div');
+    el.className='bgroup reveal';
+    el.innerHTML=`<div class="bgroup-head" style="background:${g.color}">${g.name}</div><div class="bgroup-body">${rows}</div>`;
+    host.appendChild(el);
+  });
+
+  const io=new IntersectionObserver((es)=>{
+    es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})
+  },{threshold:0.1});
+  document.querySelectorAll('.reveal').forEach((el)=>io.observe(el));
+</script>
+</body>
+</html>
